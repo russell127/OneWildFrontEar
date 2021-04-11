@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "One Wild Front Ear";
+}
+
+@model IEnumerable<OneWildFrontEar.Models.Joke>
+
+<div>
+    <h1 class="text-center">Are you ready to laugh?</h1>
+</div>
+
+<div>
+    
+    @if (ViewBag.VoteResult != null)
+    {
+        <div id="voteResult">            
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    You Voted for this joke: <span style="color:red">@ViewBag.VoteResult.JokeText</span> 
+                </div>
+                <div class="panel-body">
+                    Your joke has <span style="color:red">@ViewBag.VoteResult.Votes</span> votes.
+                </div>
+                <div class="panel-body text-center">
+                    <button type="button" id="btnFadeImg">Hide</button>
+                </div>
+            </div>            
+        </div>
+    }
+
+    <h2 class="text-center">Browse are our top jokes below. Go to the vote page to pick your favorite.</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Votes</th>
+                <th scope="row">Joke</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(v => item.Votes)</td>
+                    <td>@Html.DisplayFor(i => item.JokeText)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        @Html.ActionLink("First Page", "Index", "Home", new { id = string.Empty, page = string.Empty }, new { @class = "btn btn-primary btn-large" })
+        @Html.ActionLink("<", "Index", "Home", new { id = string.Empty, page = string.Empty }, new { @class = "btn btn-primary btn-large" })
+        @Html.ActionLink(">", "Index", "Home", new { id = string.Empty, page = "2" }, new { @class = "btn btn-primary btn-large" })
+        @Html.ActionLink("Last Page", "Index", "Home", new { id = string.Empty, page = "2" }, new { @class = "btn btn-primary btn-large" })
+    </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+      $('#btnFadeImg').click(function () {
+          $('#voteResult').slideUp();
+    }); 
+  });  
+</script>

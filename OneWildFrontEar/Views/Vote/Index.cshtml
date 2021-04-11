@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@model OneWildFrontEar.Models.JokeVote
+
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="text-center">Here are two random jokes from our collection.</h2>
+        <div class="text-center">
+            Vote for the joke you think is the funniest.  Vote as many times as you like.
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading text-center"><h3>Joke 1</h3></div>
+    <div class="panel-body">@Model.joke1.JokeText</div>
+    <div class="panel-body"><input type="button" class="btn btn-group-lg" value="Vote for Joke 1" onclick="location.href='@Url.Action("Vote", "Vote" , new { ID = Model.joke1.ID })'" /></div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading text-center"><h3>Joke 2</h3></div>
+    <div class="panel-body">@Model.joke2.JokeText</div>
+    <div class="panel-body"><input type="button" class="btn btn-group-lg" value="Vote for Joke 2" onclick="location.href='@Url.Action("Vote", "Vote" , new { ID = Model.joke2.ID })'" /></div>
+</div>
+
